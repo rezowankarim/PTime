@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prayer Times Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+        .prayer-times, .next-prayer, .jumah {
+            background-color: #002147;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #ccc;
+        }
+        .countdown, .next-prayer-time {
+            font-size: 1.5em;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="prayer-times">
+            <h2>Prayer Times</h2>
+            <table>
+                <tr>
+                    <th>Prayer Name</th>
+                    <th>Prayer Time</th>
+                    <th>Countdown</th>
+                </tr>
+                <tr><td>Fajr</td><td>5:27 AM</td><td class="countdown" id="fajr-countdown"></td></tr>
+                <tr><td>Dhuhr</td><td>11:43 AM</td><td class="countdown" id="dhuhr-countdown"></td></tr>
+                <tr><td>Asr</td><td>2:38 PM</td><td class="countdown" id="asr-countdown"></td></tr>
+                <tr><td>Maghrib</td><td>4:22 PM</td><td class="countdown" id="maghrib-countdown"></td></tr>
+                <tr><td>Isha</td><td>5:43 PM</td><td class="countdown" id="isha-countdown"></td></tr>
+            </table>
+        </div>
+
+        <div class="next-prayer">
+            <h2>Next Prayer Time</h2>
+            <div class="next-prayer-time" id="next-prayer-time">Loading...</div>
+        </div>
+
+        <div class="jumah">
+            <h2>Jumu'ah</h2>
+            <p>Starts: 1:00 PM</p>
+            <p>Jumu'ah: 1:30 PM</p>
+        </div>
+    </div>
+
+    <script>
+        const prayerTimes = {
+            fajr: "05:27",
+            dhuhr: "11:43",
+            asr: "14:38",
+            maghrib: "16:22",
+            isha: "17:43"
+        };
+
+        function updateCountdowns() {
+            const now = new Date();
+            let nextPrayer = null;
+            let nextTime = Infinity;
+
+            for (const [prayer, time] of Object.entries(prayerTimes)) {
+                const [hours, minutes] = time.split(":");
+                const prayerTime = new Date(now);
+                prayerTime.setHours(hours, minutes, 0, 0);
+
+                if (prayerTime < now) {
+                    prayerTime.setDate(prayerTime.getDate() + 1);
+                }
+
+                const diff = prayerTime - now;
+                if (diff < nextTime) {
+                    nextTime = diff;
+                    nextPrayer = prayer;
+                }
+
+                document.getElementById(`${prayer}-countdown`).innerText = 
+                    `${Math.floor(diff / 3600000)}h ${Math.floor((diff % 3600000) / 60000)}m`;
+            }
+
+            document.getElementById("next-prayer-time").innerText = 
+                `${nextPrayer.charAt(0).toUpperCase() + nextPrayer.slice(1)} at ${prayerTimes[nextPrayer]}`;
+        }
+
+        setInterval(updateCountdowns, 1000);
+        updateCountdowns();
+    </script>
+</body>
+</html>
