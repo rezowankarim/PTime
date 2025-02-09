@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ramadan 2021 Time Table is a web based apps for Ramadan 2021 Bangladesh Shahri and Iftar Time.">
+    <meta name="keywords" content="Ramadan 2021, Ramadan Time table 2021, Ramadan Shahri and Iftar Time 2021 Bangladesh">
+    <meta name="author" content="Md Sumon Mia">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="favicon.png">
+    <title>Ramadan Time Table 2021</title>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div id="debug" style="display: none;">
+        <div id="currentHisryYear"></div>
+        <div id="ThisYearRamadanBeginInGregorian"></div>
+        <div id="ThisYearRamadanEndInGregorian"></div>
+
+        <div id="SehriTime"></div>
+        <div id="IftarTime"></div>
+
+    </div>
+
+    <div class="ramadan" id="ramadan">
+        <h2 class="ramadan__title"> আজ  <span id="todayDate"></span> </h2>
+        <div id="coming-time">
+            <h3 class="coming-title mb-70">রমজান শুরু হতে</h3>
+            <div class="countdown" id="countdown">
+                <div class="coming-time-item br-1">
+                    <h2 class="time-number day" id="day">NA</h2>
+                    <h4>দিন</h4>
+                </div>
+                <div class="coming-time-item br-1">
+                    <h2 class="time-number hour" id="hour">NA</h2>
+                    <h4>ঘন্টা</h4>
+                </div>
+                <div class="coming-time-item br-1">
+                    <h2 class="time-number minute" id="minute">NA</h2>
+                    <h4>মিনিট</h4>
+                </div>
+                <div class="coming-time-item">
+                    <h2 class="time-number second" id="second">NA</h2>
+                    <h4>সেকেন্ড</h4>
+                </div>
+            </div>
+            <h3 class="coming-title mb-70">বাকি</h3>
+        </div>
+        
+        <div id="iftarTime">
+        <h3 class="coming-title mb-70">আজ ইফতারের সময় বাকি</h3>
+        <div class="ramadan__table">
+            <table>
+                <tr >
+                    <th class="table__heading">চট্টগ্রাম</th>
+                    <td> <span id="ChattogramTime"> 5:00 </span> </td>
+                    <th class="table__heading">ঢাকা</th>
+                    <td> <span id="DhakaTime"> 5:00 </span> </td>
+                    <th class="table__heading">ময়মনসিংহ</th>
+                    <td> <span id="MymensinghTime"> 5:00 </span> </td>
+                    <th class="table__heading">সিলেট</th>
+                    <td> <span id="SylhetTime"> 5:00 </span> </td>
+                </tr>
+                <tr >
+                    <th class="table__heading">খুলনা</th>
+                    <td> <span id="KhulnaTime"> 5:00 </span> </td>
+                    <th class="table__heading">বরিশাল</th>
+                    <td> <span id="BarisalTime"> 5:00 </span> </td>
+                    <th class="table__heading">রাজশাহী</th>
+                    <td> <span id="RajshahiTime"> 5:00 </span> </td>
+                    <th class="table__heading">রংপুর</th>
+                    <td> <span id="RangpurTime"> 5:00 </span> </td>
+                </tr>
+            </table>
+        </div>
+        </div>
+    </div>
+
+   
+    <div class="eid">
+        <h4 id="eid__welcome">
+            <span id="eidday">আজ ঈদুল ফিতরের দিন</span>
+            <span id="AfterEidday">এ বছর ঈদ ফিতরের দিন শেষ হয়েছে <span id="EiddayPrint"></span> </span>
+        </h4>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
