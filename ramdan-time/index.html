@@ -7,8 +7,7 @@
     <meta name="description" content="Ramadan 2021 Time Table is a web based apps for Ramadan 2021 Bangladesh Shahri and Iftar Time.">
     <meta name="keywords" content="Ramadan 2021, Ramadan Time table 2021, Ramadan Shahri and Iftar Time 2021 Bangladesh">
     <meta name="author" content="Md Sumon Mia">
-    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
-    <link rel="apple-touch-icon" href="favicon.png">
+
     <title>Ramadan Time Table 2021</title>
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="style.css">
@@ -26,7 +25,16 @@
     </div>
 
     <div class="ramadan" id="ramadan">
-        <h2 class="ramadan__title"> আজ  <span id="todayDate"></span> </h2>
+        <div class="ramadan__title"> Date <br> 
+            <table>
+                <tr>
+                    <td><span id="todayDate1"></span> </td>
+                    <td><span id="todayDate2"></span> </td>
+                    <td><span id="todayDate3"></span> </td>
+                </tr>
+            </table>
+            
+        </div>
         <div id="coming-time">
             <h3 class="coming-title mb-70">রমজান শুরু হতে</h3>
             <div class="countdown" id="countdown">
@@ -51,31 +59,176 @@
         </div>
         
         <div id="iftarTime">
-        <h3 class="coming-title mb-70">আজ ইফতারের সময় বাকি</h3>
-        <div class="ramadan__table">
-            <table>
-                <tr >
-                    <th class="table__heading">চট্টগ্রাম</th>
-                    <td> <span id="ChattogramTime"> 5:00 </span> </td>
-                    <th class="table__heading">ঢাকা</th>
-                    <td> <span id="DhakaTime"> 5:00 </span> </td>
-                    <th class="table__heading">ময়মনসিংহ</th>
-                    <td> <span id="MymensinghTime"> 5:00 </span> </td>
-                    <th class="table__heading">সিলেট</th>
-                    <td> <span id="SylhetTime"> 5:00 </span> </td>
-                </tr>
-                <tr >
-                    <th class="table__heading">খুলনা</th>
-                    <td> <span id="KhulnaTime"> 5:00 </span> </td>
-                    <th class="table__heading">বরিশাল</th>
-                    <td> <span id="BarisalTime"> 5:00 </span> </td>
-                    <th class="table__heading">রাজশাহী</th>
-                    <td> <span id="RajshahiTime"> 5:00 </span> </td>
-                    <th class="table__heading">রংপুর</th>
-                    <td> <span id="RangpurTime"> 5:00 </span> </td>
-                </tr>
-            </table>
+        <h3 class="coming-title mb-70">Live Iftara Time</h3>
+        <div style="width: 1210px; margin-left: auto; margin-right: auto;">
+            <div style="float: left;">
+            
+                <div class="timeDivision">  
+                    <div class="division2" style="height: 70px;">  Dhaka  </div> 
+
+                    <div class="division" >  
+                        <table>
+                            <tr>
+                                <td><span class="spanHMS" id="DhakaTime1"></span> <span class="spanHMSText">HOURS</span> </td>
+                                <td><span class="spanHMS" id="DhakaTime2"></span> <span class="spanHMSText">MINUTES</span> </td>
+                                <td><span class="spanHMS" id="DhakaTime3"></span> <span class="spanHMSText">SECONDS</span> </td>
+                            </tr>
+                        </table>
+                    </div> 
+                    
+                </div>
+                <span style="height: 7px; clear: both; display: block;"></span>
+                <div class="timeDivision" >  
+                    <div class="division2" style="height: 70px;">  Rajshahi  </div> 
+                    <div class="division" >  
+                        <table>
+                            <tr>
+                                <td><span class="spanHMS" id="RajshahiTime1"></span> <span class="spanHMSText">HOURS</span> </td>
+                                <td><span class="spanHMS" id="RajshahiTime2"></span> <span class="spanHMSText">MINUTES</span> </td>
+                                <td><span class="spanHMS" id="RajshahiTime3"></span> <span class="spanHMSText">SECONDS</span> </td>
+                            </tr>
+                        </table>
+                    </div> 
+                </div>
+
+                <span style="height: 7px; clear: both; display: block;"></span>
+                <div class="timeDivision" >  
+                    <div class="division2" style="height: 70px;">  Chittagonj  </div> 
+                    <div class="division" >  
+                        <table>
+                            <tr>
+                                <td><span class="spanHMS" id="ChattogramTime1"></span> <span class="spanHMSText">HOURS</span> </td>
+                                <td><span class="spanHMS" id="ChattogramTime2"></span> <span class="spanHMSText">MINUTES</span> </td>
+                                <td><span class="spanHMS" id="ChattogramTime3"></span> <span class="spanHMSText">SECONDS</span> </td>
+                            </tr>
+                        </table>
+                    </div> 
+                </div>
+
+
+                <span style="height: 7px; clear: both; display: block;"></span>
+                <div class="timeDivision" >  
+                    <div class="division2" style="height: 70px;">  Khulna  </div> 
+                    <div class="division" >  
+                        <table>
+                            <tr>
+                                <td><span class="spanHMS" id="KhulnaTime1"></span> <span class="spanHMSText">HOURS</span> </td>
+                                <td><span class="spanHMS" id="KhulnaTime2"></span> <span class="spanHMSText">MINUTES</span> </td>
+                                <td><span class="spanHMS" id="KhulnaTime3"></span> <span class="spanHMSText">SECONDS</span> </td>
+                            </tr>
+                        </table>
+                    </div> 
+                </div>
+
+                <span style="height: 7px; clear: both; display: block;"></span>
+                <div class="timeDivision" >  
+                    <div class="division2" style="height: 70px;">  Barishal  </div> 
+                    <div class="division" >  
+                        <table>
+                            <tr>
+                                <td><span class="spanHMS" id="BarisalTime1"></span> <span class="spanHMSText">HOURS</span> </td>
+                                <td><span class="spanHMS" id="BarisalTime2"></span> <span class="spanHMSText">MINUTES</span> </td>
+                                <td><span class="spanHMS" id="BarisalTime3"></span> <span class="spanHMSText">SECONDS</span> </td>
+                            </tr>
+                        </table>
+                    </div> 
+                </div>
+
+
+                <span style="height: 7px; clear: both; display: block;"></span>
+                <div class="timeDivision" >  
+                    <div class="division2" style="height: 70px;">  Sylhet  </div> 
+                    <div class="division" >  
+                        <table>
+                            <tr>
+                                <td><span class="spanHMS" id="SylhetTime1"></span> <span class="spanHMSText">HOURS</span> </td>
+                                <td><span class="spanHMS" id="SylhetTime2"></span> <span class="spanHMSText">MINUTES</span> </td>
+                                <td><span class="spanHMS" id="SylhetTime3"></span> <span class="spanHMSText">SECONDS</span> </td>
+                            </tr>
+                        </table>
+                    </div> 
+                </div>
+
+            </div>
+
+            <div style="float: right;">
+            
+                <div class="timeDivision">  
+                    <div class="division2" style="height: 70px;">  Mymensingh  </div> 
+
+                    <div class="division" >  
+                        <table>
+                            <tr>
+                                <td><span class="spanHMS" id="MymensinghTime1"></span> <span class="spanHMSText">HOURS</span> </td>
+                                <td><span class="spanHMS" id="MymensinghTime2"></span> <span class="spanHMSText">MINUTES</span> </td>
+                                <td><span class="spanHMS" id="MymensinghTime3"></span> <span class="spanHMSText">SECONDS</span> </td>
+                            </tr>
+                        </table>
+                    </div> 
+                </div>
+
+
+                <span style="height: 7px; clear: both; display: block;"></span>
+                <div class="timeDivision" >  
+                    <div class="division2" style="height: 70px;">  Rangpur  </div> 
+                    <div class="division" >  
+                        <table>
+                            <tr>
+                                <td><span class="spanHMS" id="RangpurTime1"></span> <span class="spanHMSText">HOURS</span> </td>
+                                <td><span class="spanHMS" id="RangpurTime2"></span> <span class="spanHMSText">MINUTES</span> </td>
+                                <td><span class="spanHMS" id="RangpurTime3"></span> <span class="spanHMSText">SECONDS</span> </td>
+                            </tr>
+                        </table>
+                    </div> 
+                </div>
+
+                <span style="height: 7px; clear: both; display: block;"></span>
+                <div class="timeDivision" >  
+                    <div class="division2" style="height: 70px;">  Islamabad  </div> 
+                    <div class="division" >  
+                        <table>
+                            <tr>
+                                <td><span class="spanHMS" id="IslamabadTime1"></span> <span class="spanHMSText">HOURS</span> </td>
+                                <td><span class="spanHMS" id="IslamabadTime2"></span> <span class="spanHMSText">MINUTES</span> </td>
+                                <td><span class="spanHMS" id="IslamabadTime3"></span> <span class="spanHMSText">SECONDS</span> </td>
+                            </tr>
+                        </table>
+                    </div> 
+                </div>
+
+                <span style="height: 7px; clear: both; display: block;"></span>
+                <div class="timeDivision" >  
+                    <div class="division2" style="height: 70px;">  Kolkata  </div> 
+                    <div class="division" >  
+                        <table>
+                            <tr>
+                                <td><span class="spanHMS" id="KolkataTime1"></span> <span class="spanHMSText">HOURS</span> </td>
+                                <td><span class="spanHMS" id="KolkataTime2"></span> <span class="spanHMSText">MINUTES</span> </td>
+                                <td><span class="spanHMS" id="KolkataTime3"></span> <span class="spanHMSText">SECONDS</span> </td>
+                            </tr>
+                        </table>
+                    </div> 
+                </div>
+
+                <span style="height: 7px; clear: both; display: block;"></span>
+                <div class="timeDivision" >  
+                    <div class="division2" style="height: 70px;">  Delhi  </div> 
+                    <div class="division" >  
+                        <table>
+                            <tr>
+                                <td><span class="spanHMS" id="DelhiTime1"></span> <span class="spanHMSText">HOURS</span> </td>
+                                <td><span class="spanHMS" id="DelhiTime2"></span> <span class="spanHMSText">MINUTES</span> </td>
+                                <td><span class="spanHMS" id="DelhiTime3"></span> <span class="spanHMSText">SECONDS</span> </td>
+                            </tr>
+                        </table>
+                    </div> 
+                </div>
+
+            </div>  
+
         </div>
+
+        
         </div>
     </div>
 

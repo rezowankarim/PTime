@@ -1,13 +1,4 @@
-/*
-        About          
-=========================
-Theme Name: Ramadan Time Table 2021 Bangladesh
-Theme URI: https://thew3lab.xyz/template/ramadan/
-Author: Md Sumon Mia
-Author URI: https://mdsumonmia.com
-Description: Ramadan 2021 Time Table is a web based apps for Ramadan 2021 Bangladesh Shahri and Iftar Time.
-Version: 1.0.0
-*/
+
 
 /*----------------Tonmoy-------------------------*/  
 
@@ -35,12 +26,12 @@ const GetCurrentHisryYear = async () => {
         JsonrespnoseDhakaPrayerTime = await respnoseDhakaPrayerTime.json(); //extract JSON from the http response
     }
 
-    SetIslamicFoundationIftarTime_2025(JsonrespnoseDhakaPrayerTime, cityName);
+    return SetIslamicFoundationIftarTime_2025( JsonrespnoseDhakaPrayerTime ,JSON.parse(JSON.stringify(JsonrespnoseDhakaPrayerTime))  , cityName);
 
-    return JsonrespnoseDhakaPrayerTime;
+    //return JsonrespnoseDhakaPrayerTime;
   }
 
-  function SetIslamicFoundationIftarTime_2025(jsonResponse , cityName) {
+  function SetIslamicFoundationIftarTime_2025(DhakajsonResponse ,jsonResponse, cityName) {
     var IFTime = ['18:02','18:03','18:03','18:04','18:04','18:05','18:05','18:06','18:06','18:06','18:07','18:07','18:08','18:08','18:08','18:09','18:08','18:10','18:10','18:10','18:11','18:11','18:11','18:12','18:12','18:13','18:13','18:14','18:14','18:15'];
 
 
@@ -52,7 +43,10 @@ const GetCurrentHisryYear = async () => {
     if(ramdanDate.getFullYear() == 1446) {
 
         if(cityName == 'Dhaka')
-            jsonResponse.data.timings.Maghrib = IFTime[jsonResponse.data.date.hijri.day];
+        {
+            DhakajsonResponse.data.timings.Maghrib = IFTime[DhakajsonResponse.data.date.hijri.day];
+            return DhakajsonResponse;
+        }
         else if(cityName == 'Rajshahi'){
             var adjusteTimeForDivision = AddTimeToDate( ramdanDate, jsonResponse.data.timings.Maghrib );
             adjusteTimeForDivision.setMinutes(adjusteTimeForDivision.getMinutes() + 7 );
@@ -88,6 +82,24 @@ const GetCurrentHisryYear = async () => {
             adjusteTimeForDivision.setMinutes(adjusteTimeForDivision.getMinutes() - 5 );
             jsonResponse.data.timings.Maghrib = adjusteTimeForDivision.toTimeString().substr(0,5);
         }
+
+        else if(cityName == 'Islamabad'){
+            var adjusteTimeForDivision = AddTimeToDate( ramdanDate, jsonResponse.data.timings.Maghrib );
+            adjusteTimeForDivision.setMinutes(adjusteTimeForDivision.getMinutes() + 60 );
+            jsonResponse.data.timings.Maghrib = adjusteTimeForDivision.toTimeString().substr(0,5);
+        }
+        else if(cityName == 'Kolkata'){
+            var adjusteTimeForDivision = AddTimeToDate( ramdanDate, jsonResponse.data.timings.Maghrib );
+            adjusteTimeForDivision.setMinutes(adjusteTimeForDivision.getMinutes() + 30 );
+            jsonResponse.data.timings.Maghrib = adjusteTimeForDivision.toTimeString().substr(0,5);
+        }
+        else if(cityName == 'Delhi'){
+            var adjusteTimeForDivision = AddTimeToDate( ramdanDate, jsonResponse.data.timings.Maghrib );
+            adjusteTimeForDivision.setMinutes(adjusteTimeForDivision.getMinutes() + 30 );
+            jsonResponse.data.timings.Maghrib = adjusteTimeForDivision.toTimeString().substr(0,5);
+        }
+
+        return jsonResponse;
     }
   };
 
@@ -190,8 +202,8 @@ Date.prototype.addMins= function(m){
     } );
 
   
-    var today     = new Date(2025,2,2, 17,40,0), //year, month, day, hour , m ,s
-    //var today     = new Date(),
+    //var today     = new Date(2025,1,2, 16,40,0), //year, month, day, hour , m ,s
+    var today     = new Date(),
     toDate    = today.getDate(),
     thisMonth = today.getMonth(),
     thisYear  = today.getFullYear();
@@ -200,7 +212,10 @@ Date.prototype.addMins= function(m){
         document.getElementById("coming-time").style.display = 'none';
         document.getElementById("iftarTime").style.display = 'none';
         
-        document.getElementById("todayDate").innerHTML = today.toDateString();
+        document.getElementById("todayDate1").innerHTML = toDate.toString();
+        document.getElementById("todayDate2").innerHTML = (thisMonth+1).toString();
+        document.getElementById("todayDate3").innerHTML = thisYear.toString();
+
         var todayDate = new Date(today.getFullYear(),today.getMonth(), today.getDate() );
 
         if(todayDate < ThisYearRamadanBeginInGregorian ) {
@@ -258,6 +273,10 @@ Date.prototype.addMins= function(m){
     var RajshahiTime =0;
     var RangpurTime =0;
   
+    var IslamabadTime =0;
+    var KolkataTime =0;
+    var DelhiTime =0;
+
 
     var DailyTimeLeftCounter = async ()=> {
         document.getElementById("iftarTime").style.display = 'block';
@@ -301,6 +320,17 @@ Date.prototype.addMins= function(m){
         });
 
 
+        await GetPrayerTimeByDate(today , 'Islamabad').then(data => {
+            IslamabadTime = AddTimeToDate(today, data.data.timings.Maghrib );
+        });
+        await GetPrayerTimeByDate(today , 'Kolkata').then(data => {
+            KolkataTime = AddTimeToDate(today, data.data.timings.Maghrib );
+            debugger;
+        });
+        await GetPrayerTimeByDate(today , 'Delhi').then(data => {
+            DelhiTime = AddTimeToDate(today, data.data.timings.Maghrib );
+        });
+
         setInterval(function() {
 
             // Get todays date and time
@@ -319,6 +349,10 @@ Date.prototype.addMins= function(m){
             totalDistance = totalDistance + CalculateRemainTimeAndSet(BarisalIftarTime ,now , 'BarisalTime' );
             totalDistance = totalDistance + CalculateRemainTimeAndSet(RajshahiTime ,now , 'RajshahiTime' );
             totalDistance = totalDistance + CalculateRemainTimeAndSet(RangpurTime ,now , 'RangpurTime' );
+
+            totalDistance = totalDistance + CalculateRemainTimeAndSet(IslamabadTime ,now , 'IslamabadTime' );
+            totalDistance = totalDistance + CalculateRemainTimeAndSet(KolkataTime ,now , 'KolkataTime' );
+            totalDistance = totalDistance + CalculateRemainTimeAndSet(DelhiTime ,now , 'DelhiTime' );
 
 
             // If the count down is over, write some text 
@@ -360,11 +394,26 @@ Date.prototype.addMins= function(m){
         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        divIftarTime = document.getElementById(divId);
-        divIftarTime.innerHTML = hours + 'h ' +  minutes + 'm ' + seconds + 's' ;
+        //divIftarTime = document.getElementById(divId);
+        //divIftarTime.innerHTML = hours + 'h ' +  minutes + 'm ' + seconds + 's' ;
+
+
+        divIftarTimeHour = document.getElementById(divId+'1');
+        divIftarTimeMin = document.getElementById(divId+'2');
+        divIftarTimeSec = document.getElementById(divId+'3');
+        if(divIftarTimeHour){
+            divIftarTimeHour.innerHTML = hours ;
+            divIftarTimeMin.innerHTML =  minutes ;
+            divIftarTimeSec.innerHTML = seconds ;
+
+        }
+
 
         if (distance < 0) {
-            divIftarTime.innerHTML = "--";
+            //divIftarTime.innerHTML = "--";
+            divIftarTimeHour.innerHTML = "--";
+            divIftarTimeMin.innerHTML = "--";
+            divIftarTimeSec.innerHTML = "--";
             return 0;
         }
         return distance;
